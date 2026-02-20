@@ -1,0 +1,111 @@
+:root {
+  --bg: #07110c;        /* deep forest-black */
+  --panel: #0d1b14;     /* dark green panel */
+  --border: #1f4a37;    /* mossy border */
+  --text: #e7fff4;      /* pale mint text */
+  --muted: #9fd6bc;     /* soft sage */
+  --accent: #5ff2a6;    /* glowing emerald */
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px;
+}
+
+h1 { margin: 0 0 6px; font-size: 1.4rem; }
+.subtitle { margin: 0 0 14px; color: var(--muted); font-size: 0.92rem; }
+
+.panel {
+  background: linear-gradient(180deg, #0d1b14 0%, #0b1712 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 0 0 1px rgba(95, 242, 166, 0.05), 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.controls {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+label {
+  display: grid;
+  gap: 5px;
+}
+
+label span {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+input, select, button {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #143439;
+  color: var(--text);
+  padding: 8px 10px;
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  min-width: 140px;
+}
+
+
+button:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(95, 242, 166, 0.12);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.status {
+  font-size: 0.9rem;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+canvas {
+  width: 100%;
+  max-height: 60vh;
+  display: block;
+  background: #0e1528;
+  border-radius: 8px;
+  border: 1px dashed var(--border);
+  object-fit: contain;
+}
+
+.notes { margin-top: 12px; }
+.notes summary { cursor: pointer; color: var(--muted); }
+.notes li { color: var(--muted); margin: 6px 0; }
+
+@media (max-width: 850px) {
+  .grid { grid-template-columns: 1fr; }
+}

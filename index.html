@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>obfusimg Web</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>obfusimg Web</h1>
+    <p class="subtitle">Minimal browser version of the C++ pixel-obfuscation tool (Gilbert/Hilbert-like + chaotic permutations).</p>
+
+    <section class="panel controls">
+      <label>
+        <span>Image</span>
+        <input id="fileInput" type="file" accept="image/png,image/jpeg,image/jpg" />
+      </label>
+
+      <label>
+        <span>Algorithm</span>
+        <select id="algorithmSelect">
+          <option value="0">0 — Gilbert curve obfuscation</option>
+          <option value="1">1 — Invert Gilbert curve</option>
+          <option value="2">2 — Chaos (tent map) obfuscation</option>
+          <option value="3">3 — Invert chaos (tent map)</option>
+        </select>
+      </label>
+
+      <label>
+        <span>Seed (chaos only)</span>
+        <input id="seedInput" type="number" step="any" value="0.3141592653" />
+      </label>
+
+      <div class="buttons">
+        <button id="runBtn">Run</button>
+        <button id="swapBtn" type="button">Use output as input</button>
+        <button id="downloadBtn" type="button">Download</button>
+      </div>
+
+      <div id="status" class="status">Load an image to begin.</div>
+    </section>
+
+    <section class="grid">
+      <div class="panel">
+        <h2>Input</h2>
+        <canvas id="inputCanvas"></canvas>
+      </div>
+      <div class="panel">
+        <h2>Output</h2>
+        <canvas id="outputCanvas"></canvas>
+      </div>
+    </section>
+
+    <details class="panel notes">
+      <summary>Notes</summary>
+      <ul>
+        <li>All processing is done locally in your browser. No data is uploaded to any server.</li>
+        <li>Replicates the C++ project’s core algorithms in JavaScript.</li>
+        <li>Downloaded output preserves input format.</li>
+      </ul>
+    </details>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
