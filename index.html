@@ -19,17 +19,20 @@
 
       <label>
         <span>Algorithm</span>
-        <select id="algorithmSelect">
-          <option value="0">0 — Gilbert curve obfuscation</option>
-          <option value="1">1 — Invert Gilbert curve</option>
-          <option value="2">2 — Chaos (tent map) obfuscation</option>
-          <option value="3">3 — Invert chaos (tent map)</option>
-        </select>
+          <select id="algorithmSelect">
+            <option value="0">0 — Compact Hilbert/Gilbert obfuscation</option>
+            <option value="1">1 — Invert compact Hilbert/Gilbert</option>
+            <!-- <option value="2">2 — Exact Gilbert path shift (Fanqie-compatible encrypt)</option> -->
+            <option value="3">3 — Invert exact Gilbert path shift (小番茄-compatible)</option>
+            <option value="4">4 — Chaos (tent map) obfuscation</option>
+            <option value="5">5 — Invert chaos (tent map)</option>
+          </select>
       </label>
 
       <label>
         <span>Seed (chaos only)</span>
-        <input id="seedInput" type="number" step="any" value="0.3141592653" />
+        <input id="seedInput" type="number" step="any" value="0.134554312" />
+        <!-- 雨上がりの虹も -->
       </label>
 
       <div class="buttons">
@@ -57,6 +60,7 @@
       <ul>
         <li>All processing is done locally in your browser. No data is uploaded to any server.</li>
         <li>Replicates the C++ project’s core algorithms in JavaScript.</li>
+        <li>Supports decryption of <a href=https://xfqtphx.netlify.app/>小番茄图片混淆</a>. (Note that we kindly suppress encryption and direct users to the other site.)</li>
         <li>Downloaded output preserves input format.</li>
       </ul>
     </details>
