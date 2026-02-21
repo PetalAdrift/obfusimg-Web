@@ -122,14 +122,14 @@ function runObfuscation(imageData, width, height, alg, seed) {
       // Compact Hilbert/Gilbert (original)
       let g = generateGFunction(width, height);
       g = normalizePermutation(g);
-      perm = g;
+      perm = invertPermutation(g);
       break;
     }
     case 1: {
       // Inverse compact Hilbert/Gilbert
       let g = generateGFunction(width, height);
       g = normalizePermutation(g);
-      perm = invertPermutation(g);
+      perm = g;
       break;
     }
     case 2: {
