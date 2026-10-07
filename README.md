@@ -1,6 +1,6 @@
 # obfusimg Web (minimal)
 
-This is a minimal browser port of the1 C++ project `obfusimg` by \_\_roselle\_\_ and pigeon.hannah.
+This is a minimal browser port of the C++ project `obfusimg` by \_\_roselle\_\_ and pigeon.hannah.
 
 ## Features
 - Gilbert-curve-based obfuscation (and inverse)

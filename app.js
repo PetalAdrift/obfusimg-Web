@@ -15,6 +15,25 @@ console.log('original C++ by __roselle__ and pigeon.hannah; ported by LLM');
 // --- remember original file info ---
 let loadedFileMime = 'image/png';
 let loadedFileName = 'obfusimg_out.png';
+let loadedFileExt = 'png';
+
+function getInputFormat(file) {
+  const type = (file.type || '').toLowerCase();
+  const name = (file.name || '').toLowerCase();
+
+  if (type === 'image/jpeg' || type === 'image/jpg' || /\.jpe?g$/.test(name)) {
+    return {
+      mime: 'image/jpeg',
+      ext: name.endsWith('.jpeg') ? 'jpeg' : 'jpg',
+    };
+  }
+
+  if (type === 'image/png' || /\.png$/.test(name)) {
+    return { mime: 'image/png', ext: 'png' };
+  }
+
+  return { mime: 'image/png', ext: 'png' };
+}
 
 function setStatus(msg) { statusEl.textContent = msg; }
 
@@ -27,9 +46,11 @@ fileInput.addEventListener('change', async (e) => {
   const file = e.target.files?.[0];
   if (!file) return;
   try {
-    // --- save original mime/name ---
-    loadedFileMime = file.type || 'image/png';
-    loadedFileName = file.name || 'obfusimg_out.png';
+    // --- save original format/name ---
+    const inputFormat = getInputFormat(file);
+    loadedFileMime = inputFormat.mime;
+    loadedFileExt = inputFormat.ext;
+    loadedFileName = file.name || `obfusimg_out.${loadedFileExt}`;
 
     const bmp = await createImageBitmap(file);
     syncCanvasSize(inputCanvas, bmp.width, bmp.height);
@@ -79,25 +100,10 @@ downloadBtn.addEventListener('click', () => {
     return;
   }
 
-  // --- preserve png/jpg when possible ---
-  let outMime = loadedFileMime;
-  if (!['image/png', 'image/jpeg'].includes(outMime)) {
-    outMime = 'image/png';
-  }
-
-  // If original was JPG but output has transparency, force PNG
-  if (outMime === 'image/jpeg') {
-    const img = octx.getImageData(0, 0, outputCanvas.width, outputCanvas.height).data;
-    for (let i = 3; i < img.length; i += 4) {
-      if (img[i] !== 255) {
-        outMime = 'image/png';
-        break;
-      }
-    }
-  }
-
+  // Preserve the original PNG/JPEG format.
+  const outMime = loadedFileMime;
+  const ext = loadedFileExt;
   const baseName = loadedFileName.replace(/\.[^.]+$/, '') || 'obfusimg_out';
-  const ext = outMime === 'image/jpeg' ? 'jpg' : 'png';
   const quality = outMime === 'image/jpeg' ? 0.92 : undefined;
 
   outputCanvas.toBlob((blob) => {
